@@ -1,0 +1,20 @@
+# MeloShop Marketing — protótipo inicial
+
+## Como abrir
+1. Extraia o ZIP.
+2. Abra `index.html` no navegador para testar a interface.
+3. Para instalar como PWA no celular/PC, publique os arquivos em um serviço de hospedagem HTTPS e use a opção "Instalar aplicativo" do navegador.
+
+## O que funciona nesta versão
+- Interface responsiva para computador e celular.
+- Campos para link, plataforma, canal, nome e características.
+- Geração local de uma prévia de título, legenda, hashtags, roteiro e orientação visual.
+- Botões para copiar cada bloco ou tudo.
+
+## O que ainda precisa ser integrado
+- Leitura real dos dados dos links da Shopee e do Mercado Livre.
+- Serviço de IA para produzir conteúdo contextual e hashtags pesquisadas.
+- Backend seguro para guardar credenciais/API keys. Nunca coloque chaves secretas no HTML/JavaScript público.
+- Banco de dados para histórico e produtos salvos.
+
+A geração atual é uma prévia por modelo, não uma análise real do produto nem uma pesquisa ao vivo de hashtags.
