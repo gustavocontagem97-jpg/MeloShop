@@ -1,20 +1,47 @@
-# MeloShop Marketing — protótipo inicial
+MELOSHOP — INSTALAÇÃO E CONFIGURAÇÃO
 
-## Como abrir
-1. Extraia o ZIP.
-2. Abra `index.html` no navegador para testar a interface.
-3. Para instalar como PWA no celular/PC, publique os arquivos em um serviço de hospedagem HTTPS e use a opção "Instalar aplicativo" do navegador.
-
-## O que funciona nesta versão
+O que já está no projeto
 - Interface responsiva para computador e celular.
-- Campos para link, plataforma, canal, nome e características.
-- Geração local de uma prévia de título, legenda, hashtags, roteiro e orientação visual.
-- Botões para copiar cada bloco ou tudo.
+- Campo para colar o link do produto.
+- API /api/analyze para ler metadados públicos e gerar o pacote de marketing.
+- Integrações com OpenAI, Google Gemini e Anthropic (Claude).
+- Fallback: se um provedor falhar, tenta o próximo que estiver configurado.
+- Painel que mostra quais provedores estão configurados.
+- PWA básico para instalação como aplicativo.
 
-## O que ainda precisa ser integrado
-- Leitura real dos dados dos links da Shopee e do Mercado Livre.
-- Serviço de IA para produzir conteúdo contextual e hashtags pesquisadas.
-- Backend seguro para guardar credenciais/API keys. Nunca coloque chaves secretas no HTML/JavaScript público.
-- Banco de dados para histórico e produtos salvos.
+IMPORTANTE
+O GitHub Pages hospeda apenas arquivos estáticos e não executa /api. Para usar a análise por IA, publique este mesmo repositório na Vercel (ou em outro host que execute funções Node.js). Não é necessário criar outro repositório.
 
-A geração atual é uma prévia por modelo, não uma análise real do produto nem uma pesquisa ao vivo de hashtags.
+PUBLICAR NA VERCEL
+1. Entre na Vercel e importe o repositório gustavocontagem97-jpg/MeloShop.
+2. Use as configurações padrão para projeto JavaScript/Node.
+3. Faça o deploy.
+4. Em Project Settings > Environment Variables, adicione pelo menos uma chave:
+   OPENAI_API_KEY
+   GEMINI_API_KEY
+   ANTHROPIC_API_KEY
+5. Opcionalmente, configure o modelo:
+   OPENAI_MODEL (padrão: gpt-5-mini)
+   GEMINI_MODEL (padrão: gemini-2.5-flash)
+   ANTHROPIC_MODEL (o identificador de modelo disponível na sua conta)
+6. Faça um novo deploy depois de salvar as variáveis.
+
+SEGURANÇA
+- Nunca coloque chaves de API no index.html, no navegador ou em commits.
+- Cadastre as chaves somente nas variáveis de ambiente do servidor.
+- A tela de integrações mostra apenas se a chave existe; ela nunca revela o segredo.
+- As chamadas às APIs podem gerar custos e estão sujeitas a limites dos provedores.
+
+LIMITAÇÕES
+- A API aceita links HTTPS de Shopee, Mercado Livre, Amazon Brasil e AliExpress.
+- Algumas lojas bloqueiam leitura automatizada. Nesses casos, a identificação pode ficar incompleta.
+- Hashtags sugeridas pela IA não significam que sejam tendências verificadas; confira antes de publicar.
+- Revise preço, estoque, frete, medidas e características na página original.
+- A conexão do provedor é feita pelas variáveis de ambiente da hospedagem; a interface não armazena nem solicita chaves secretas.
+
+ARQUIVOS
+- index.html: interface
+- api/analyze.js: análise e geração por IA
+- api/providers.js: status das integrações
+- vercel.json: configuração das funções
+- manifest.webmanifest e sw.js: instalação/cache do PWA
