@@ -1,83 +1,22 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#111111">
-<title>MeloShop Marketing</title>
-<link rel="manifest" href="manifest.webmanifest">
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffd21f"><link rel="manifest" href="manifest.webmanifest"><title>MeloShop</title>
 <style>
-:root{--bg:#0b0b0d;--panel:#151519;--panel2:#202026;--line:#303039;--yellow:#ffd21f;--muted:#a5a5b0;--white:#f7f7f8}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font:15px/1.5 Inter,system-ui,Arial,sans-serif}
-header{border-bottom:1px solid var(--line);background:#101013;position:sticky;top:0;z-index:2}
-.wrap{max-width:1080px;margin:auto;padding:18px}
-.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:12px;background:var(--yellow);color:#111;display:grid;place-items:center;font-weight:950;font-size:21px}
-h1{font-size:19px;margin:0;letter-spacing:.2px}.sub{color:var(--muted);font-size:12px}
-main{max-width:1080px;margin:auto;padding:24px 18px 60px}
-.hero{margin:8px 0 22px}.eyebrow{color:var(--yellow);font-size:11px;font-weight:800;letter-spacing:1.5px}.hero h2{font-size:clamp(25px,4vw,36px);line-height:1.12;margin:8px 0}.hero p{color:var(--muted);margin:0;max-width:650px}
-.layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
-.card h3{margin:0 0 5px;font-size:17px}.hint{color:var(--muted);font-size:13px;margin:0 0 16px}
-label{display:block;font-weight:700;font-size:13px;margin:14px 0 7px}
-input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:11px;color:var(--white);padding:13px;font:inherit;outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--yellow)}
-textarea{min-height:86px;resize:vertical}
-button{border:0;border-radius:11px;padding:12px 15px;font-weight:800;cursor:pointer}
-.primary{background:var(--yellow);color:#111;width:100%;margin-top:16px}.secondary{background:#292930;color:white;border:1px solid var(--line)}
-.row{display:flex;gap:9px;align-items:center}.row>*{flex:1}
-.note{font-size:12px;color:var(--muted);margin-top:12px}
-.status{display:inline-flex;align-items:center;gap:6px;border:1px solid #4b4320;color:var(--yellow);border-radius:99px;padding:5px 9px;font-size:11px;font-weight:700}
-.output{display:grid;gap:12px}.outbox{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px}
-.outhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}.outhead strong{font-size:13px}
-.copy{background:#363640;color:white;padding:7px 10px;font-size:11px}.outtext{white-space:pre-wrap;color:#e6e6eb;font-size:13px;overflow-wrap:anywhere}
-.placeholder{color:var(--muted);font-size:13px;padding:28px 8px;text-align:center;border:1px dashed var(--line);border-radius:13px}
-footer{max-width:1080px;margin:auto;padding:0 18px 28px;color:#777;font-size:11px}
-@media(max-width:760px){.layout{grid-template-columns:1fr}.wrap{padding:14px}main{padding:20px 14px 45px}.card{padding:16px}}
-</style>
-</head>
-<body>
-<header><div class="wrap brand"><div class="logo">M</div><div><h1>MeloShop Marketing</h1><div class="sub">Seu painel de criação de anúncios</div></div><div style="margin-left:auto"><span class="status">● VERSÃO INICIAL</span></div></div></header>
-<main>
-<section class="hero"><div class="eyebrow">MARKETING MAIS SIMPLES</div><h2>Seu produto. Seu conteúdo.<br><span style="color:var(--yellow)">Pronto para divulgar.</span></h2><p>Adicione as informações do produto e prepare uma base de publicação para suas redes sociais.</p></section>
-<div class="layout">
-<section class="card">
-<h3>① Dados do produto</h3><p class="hint">Cole o link e complete os dados que não forem identificados automaticamente.</p>
-<label for="url">Link do produto</label><input id="url" type="url" placeholder="Cole aqui o link da Shopee ou Mercado Livre">
-<div class="row"><div><label for="market">Plataforma</label><select id="market"><option value="auto">Detectar automaticamente</option><option>Shopee</option><option>Mercado Livre</option><option>Outra</option></select></div><div><label for="channel">Onde vai publicar?</label><select id="channel"><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>WhatsApp</option><option>Todas as redes</option></select></div></div>
-<label for="name">Nome do produto</label><input id="name" placeholder="Ex.: Relógio digital esportivo">
-<label for="features">Características e vantagens</label><textarea id="features" placeholder="Ex.: resistente à água, pulseira ajustável, várias funções..."></textarea>
-<div class="row"><div><label for="tone">Estilo do anúncio</label><select id="tone"><option value="vendedor">Vendedor e chamativo</option><option value="elegante">Elegante e profissional</option><option value="direto">Curto e direto</option></select></div><div><label for="audience">Público</label><select id="audience"><option>Geral</option><option>Jovens</option><option>Casa e família</option><option>Esporte e lazer</option></select></div></div>
-<button class="primary" id="generate">GERAR CONTEÚDO ✦</button>
-<p class="note">Esta versão inicial não acessa o conteúdo do link automaticamente. Preencha o nome e as características para gerar uma prévia. A integração com leitura de links e IA será a próxima etapa.</p>
-</section>
-<section class="card">
-<div class="row" style="align-items:flex-start"><div><h3>② Sua publicação</h3><p class="hint">Conteúdo organizado para revisar e copiar.</p></div><button class="secondary" id="copyAll" style="flex:0 0 auto">Copiar tudo</button></div>
-<div id="results" class="output"><div class="placeholder">Seu conteúdo aparecerá aqui depois que você gerar a publicação.</div></div>
-</section>
-</div>
-</main>
-<footer>MeloShop Marketing • Protótipo inicial • Revise preços, disponibilidade e características antes de publicar.</footer>
+:root{--bg:#09090b;--panel:#141418;--panel2:#202027;--line:#34343e;--yellow:#ffd21f;--muted:#aaaab4;--white:#f7f7f8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font:15px/1.5 Inter,system-ui,Arial}header{position:sticky;top:0;background:#101013ee;border-bottom:1px solid var(--line);z-index:5}.wrap,main,footer{max-width:1180px;margin:auto}.wrap{padding:16px 20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:12px;background:var(--yellow);color:#111;display:grid;place-items:center;font-weight:950;font-size:21px}.brand h1{font-size:19px;margin:0}.sub,.hint{color:var(--muted);font-size:12px}.nav{margin-left:auto;display:flex;gap:8px;align-items:center}button{border:0;border-radius:11px;padding:11px 14px;font-weight:800;cursor:pointer}.secondary{background:#292930;color:white;border:1px solid var(--line)}main{padding:28px 20px 60px}.eyebrow{color:var(--yellow);font-size:11px;font-weight:900;letter-spacing:1.5px}.hero h2{font-size:clamp(28px,5vw,46px);line-height:1.08;margin:8px 0}.hero p{color:var(--muted);max-width:760px}.layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}.card h3{margin:0 0 5px}label{display:block;font-size:13px;font-weight:750;margin:14px 0 7px}input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:11px;color:var(--white);padding:13px;font:inherit}textarea{min-height:84px;resize:vertical}.row{display:flex;gap:9px}.row>*{flex:1}.primary{background:var(--yellow);color:#111;width:100%;margin-top:16px;padding:14px}.status{border:1px solid #51451c;color:var(--yellow);border-radius:99px;padding:5px 9px;font-size:11px;font-weight:800}.status.ok{color:#63e6be;border-color:#24513f}.progress{display:none;margin-top:12px;color:var(--muted);font-size:12px}.progress.show{display:block}.bar{height:5px;background:#303039;border-radius:99px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;width:35%;background:var(--yellow);animation:load 1.2s infinite}@keyframes load{50%{margin-left:65%}}.output{display:grid;gap:12px}.outbox{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px}.outhead{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}.copy{background:#383842;color:white;padding:7px 10px;font-size:11px}.outtext{white-space:pre-wrap;font-size:13px;overflow-wrap:anywhere}.placeholder{color:var(--muted);padding:28px 8px;text-align:center;border:1px dashed var(--line);border-radius:13px}.info{margin-top:12px;padding:11px;border:1px solid var(--line);border-radius:11px;color:var(--muted);font-size:12px}.product{display:none;margin-top:12px;padding:13px;background:#0d0d10;border:1px solid var(--line);border-radius:12px}.product.show{display:block}.product small{display:block;color:var(--muted)}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{max-width:560px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}.provider{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}footer{padding:0 20px 30px;color:#777;font-size:11px}@media(max-width:820px){.layout{grid-template-columns:1fr}.row{flex-direction:column}.wrap,main{padding-left:14px;padding-right:14px}}
+</style></head><body>
+<header><div class="wrap brand"><div class="logo">M</div><div><h1>MeloShop</h1><div class="sub">Marketing automático para seus produtos</div></div><div class="nav"><span id="apiStatus" class="status">● IA</span><button class="secondary" id="settings">⚙ Integrações</button></div></div></header>
+<main><section class="hero"><div class="eyebrow">LINK → PESQUISA → IA → CONTEÚDO</div><h2>Cole o link.<br><span style="color:var(--yellow)">O MeloShop faz o resto.</span></h2><p>Identifique o produto, pesquise informações públicas e gere anúncios para suas redes sociais. Você pode começar somente com o link.</p></section>
+<div class="layout"><section class="card"><h3>① Produto</h3><p class="hint">Cole o link da loja. Os outros campos são opcionais.</p><label for="url">Link do produto</label><input id="url" type="url" placeholder="Cole o link da Shopee ou Mercado Livre">
+<div class="row"><div><label for="channel">Onde publicar?</label><select id="channel"><option>Todas as redes</option><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>WhatsApp</option></select></div><div><label for="tone">Estilo</label><select id="tone"><option value="vendedor">Vendedor e chamativo</option><option value="elegante">Elegante e profissional</option><option value="direto">Curto e direto</option></select></div></div>
+<label for="extra">Observação (opcional)</label><textarea id="extra" placeholder="Ex.: destacar praticidade, presente, público..."></textarea><button class="primary" id="generate">PESQUISAR PRODUTO + GERAR TUDO ✦</button><div id="progress" class="progress">Analisando o produto e consultando a IA...<div class="bar"><i></i></div></div><div id="product" class="product"></div><div class="info">As chaves de IA ficam protegidas no servidor. A leitura automática pode ser limitada quando a loja bloqueia robôs; revise os dados antes de publicar.</div></section>
+<section class="card"><div class="row" style="align-items:flex-start"><div><h3>② Conteúdo pronto</h3><p class="hint">Copie cada parte ou o pacote inteiro.</p></div><button class="secondary" id="copyAll">Copiar tudo</button></div><div id="results" class="output"><div class="placeholder">Seu anúncio aparecerá aqui depois da pesquisa.</div></div></section></div></main>
+<footer>MeloShop • Revise preço, estoque, frete e características antes de publicar.</footer>
+<div class="modal" id="modal"><div class="modalbox"><div class="row"><h3>Integrações de IA</h3><button class="secondary" id="close">Fechar</button></div><p class="hint">Configure uma ou mais chaves no servidor. Se uma IA falhar, o MeloShop tenta a próxima disponível.</p><div id="providers">Consultando configurações...</div><div class="info">Variáveis: OPENAI_API_KEY, GEMINI_API_KEY e ANTHROPIC_API_KEY. Nunca compartilhe suas chaves.</div></div></div>
 <script>
 const $=id=>document.getElementById(id);
-function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function makeContent(){
- const url=$('url').value.trim(), name=$('name').value.trim(), features=$('features').value.trim();
- if(!name){alert('Digite o nome do produto para continuar.');$('name').focus();return;}
- const channel=$('channel').value, tone=$('tone').value;
- let intro=tone==='elegante'?'Conheça ':tone==='direto'?'Confira ':'Você precisa conhecer ';
- let desc=intro+name+'. '+(features?features+'. ':'')+'Uma opção para quem busca praticidade e qualidade no dia a dia. Confira os detalhes no link!';
- let title=name+' | Confira essa opção!';
- let tags=['#MeloShop','#Achadinhos','#OfertaDoDia','#DicaDeCompra','#Comprinhas'];
- const words=name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^a-z0-9]+/).filter(w=>w.length>3).slice(0,3);
- words.forEach(w=>tags.push('#'+w.charAt(0).toUpperCase()+w.slice(1)));
- let video='CENA 1 — Mostre o produto em destaque.\nTEXTO NA TELA: '+name+'\n\nCENA 2 — Mostre os detalhes e características: '+(features||'destaque os principais benefícios')+'.\n\nCENA 3 — Finalize com uma chamada: “Confira o link e veja mais detalhes!”';
- let visual='FORMATO SUGERIDO: '+(channel==='TikTok'?'Vídeo vertical 9:16':channel==='WhatsApp'?'Imagem vertical 4:5 ou status 9:16':'Feed 4:5 ou Stories 9:16')+'\n\nOrganização: produto em destaque, fundo limpo, título curto no topo e chamada para ação na parte inferior. Use as cores preto e amarelo da MeloShop.';
- const items=[['Título',title],['Legenda',desc],['Hashtags',tags.join(' ')],['Roteiro de vídeo',video],['Orientação visual',visual],['Link do produto',url||'Adicione o link antes de publicar.']];
- $('results').innerHTML=items.map(([k,v],i)=>`<div class="outbox"><div class="outhead"><strong>${esc(k)}</strong><button class="copy" data-copy="${i}">COPIAR</button></div><div class="outtext" id="out${i}">${esc(v)}</div></div>`).join('');
- document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>navigator.clipboard.writeText($('out'+b.dataset.copy).innerText).then(()=>{b.textContent='COPIADO';setTimeout(()=>b.textContent='COPIAR',1200)})));
-}
-$('generate').addEventListener('click',makeContent);
-$('copyAll').addEventListener('click',()=>{const t=[...document.querySelectorAll('.outbox')].map(x=>x.innerText).join('\n\n');if(!t){alert('Gere um conteúdo primeiro.');return;}navigator.clipboard.writeText(t).then(()=>alert('Conteúdo copiado!'));});
-$('url').addEventListener('input',e=>{if($('market').value==='auto'){const u=e.target.value.toLowerCase();if(u.includes('shopee'))$('market').value='Shopee';else if(u.includes('mercadolivre')||u.includes('mercadolivre.com'))$('market').value='Mercado Livre';}});
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script>
-</body></html>
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(x){const a=[["Título",x.title],["Resumo do produto",x.summary],["Legenda",x.caption],["Hashtags",Array.isArray(x.hashtags)?x.hashtags.join(" "):x.hashtags],["Roteiro de vídeo",x.video_script],["Publicações por rede",typeof x.social_posts==="object"?JSON.stringify(x.social_posts,null,2):x.social_posts],["Chamada para ação",x.cta],["Orientação visual",x.visual_direction],["Pesquisa e observações",x.research_notes]];const items=a.filter(v=>v[1]);$("results").innerHTML=items.map((v,i)=>'<div class="outbox"><div class="outhead"><strong>'+esc(v[0])+'</strong><button class="copy" data-i="'+i+'">COPIAR</button></div><div class="outtext" id="out'+i+'">'+esc(v[1])+'</div></div>').join("");document.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>navigator.clipboard.writeText($("out"+b.dataset.i).innerText).then(()=>{b.textContent="COPIADO";setTimeout(()=>b.textContent="COPIAR",1000)}));}
+$("generate").onclick=async()=>{const url=$("url").value.trim();if(!url)return alert("Cole o link do produto.");$("progress").classList.add("show");$("generate").disabled=true;try{const r=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({url,channel:$("channel").value,tone:$("tone").value,extra:$("extra").value})});const d=await r.json();if(!r.ok)throw Error(d.error||"Não foi possível analisar.");const p=d.product||{};$("product").innerHTML="<b>"+esc(p.name||"Produto identificado")+"</b><small>"+esc(p.category||"")+" · "+esc(p.price||"Preço não confirmado")+"</small>";$("product").classList.add("show");render(d.content||{});$("apiStatus").textContent="● IA ONLINE";$("apiStatus").classList.add("ok");}catch(e){$("results").innerHTML='<div class="placeholder">'+esc(e.message)+'</div>';}finally{$("progress").classList.remove("show");$("generate").disabled=false;}};
+$("copyAll").onclick=()=>{const t=[...document.querySelectorAll(".outbox")].map(x=>x.innerText).join("\n\n");if(t)navigator.clipboard.writeText(t).then(()=>alert("Conteúdo copiado!"));};
+$("settings").onclick=async()=>{$("modal").classList.add("show");try{const r=await fetch("/api/providers");const d=await r.json();$("providers").innerHTML=(d.providers||[]).map(p=>'<div class="provider"><span>'+esc(p.name)+'</span><b style="color:'+(p.configured?"#63e6be":"#ffd21f")+'">'+(p.configured?"CONECTADA":"NÃO CONFIGURADA")+'</b></div>').join("");}catch(e){$("providers").textContent="Backend não disponível neste endereço.";}};$("close").onclick=()=> $("modal").classList.remove("show");$("modal").onclick=e=>{if(e.target.id==="modal")$("modal").classList.remove("show");};
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+</script></body></html>
