@@ -59,7 +59,7 @@ export default async function handler(req, res) {
 async function callProvider(name,key,prompt){
   const signal=AbortSignal.timeout(22000);
   if(name==="openai"){
-    const r=await fetch("https://api.openai.com/v1/responses",{method:"POST",headers:{Authorization:"Bearer "+key,"Content-Type":"application/json"},signal,body:JSON.stringify({model:process.env.OPENAI_MODEL||"gpt-5-mini",tools:[{type:"web_search"}],input:prompt})});
+    const r=await fetch("https://api.openai.com/v1/responses",{method:"POST",headers:{Authorization:"Bearer "+key,"Content-Type":"application/json"},signal,body:JSON.stringify({model:process.env.OPENAI_MODEL||"gpt-5-mini",reasoning:{effort:"low"},tools:[{type:"web_search"}],input:prompt})});
     const j=await r.json();if(!r.ok)throw new Error(j.error?.message||"Erro OpenAI");
     const t=j.output_text||(j.output||[]).flatMap(o=>o.content||[]).map(c=>c.text||"").join("\n");if(!t)throw new Error("OpenAI retornou vazio.");return t;
   }
@@ -69,7 +69,7 @@ async function callProvider(name,key,prompt){
     const j=await r.json();if(!r.ok)throw new Error(j.error?.message||"Erro Gemini");
     const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||"").join("\n");if(!t)throw new Error("Gemini retornou vazio.");return t;
   }
-  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":key,"anthropic-version":"2023-06-01","Content-Type":"application/json"},signal,body:JSON.stringify({model:process.env.ANTHROPIC_MODEL||"claude-3-5-haiku-latest",max_tokens:5000,tools:[{type:"web_search_20250305",name:"web_search",max_uses:3}],messages:[{role:"user",content:prompt}]})});
+  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":key,"anthropic-version":"2023-06-01","Content-Type":"application/json"},signal,body:JSON.stringify({model:process.env.ANTHROPIC_MODEL||"claude-haiku-5-5",max_tokens:5000,tools:[{type:"web_search_20250305",name:"web_search",max_uses:3}],messages:[{role:"user",content:prompt}]})});
   const j=await r.json();if(!r.ok)throw new Error(j.error?.message||"Erro Claude");
   const t=(j.content||[]).filter(c=>c.type==="text").map(c=>c.text||"").join("\n");if(!t)throw new Error("Claude retornou vazio.");return t;
 }
