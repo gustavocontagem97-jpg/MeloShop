@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       const response = await fetch(parsed.toString(), { headers: { "User-Agent": "Mozilla/5.0 (compatible; MeloShop/1.0)", "Accept-Language": "pt-BR,pt;q=0.9" }, signal: AbortSignal.timeout(9000), redirect: "manual" });
       if (response.ok) {
         const html = (await response.text()).slice(0, 350000);
-        const meta = key => { const re = new RegExp('<meta[^>]+(?:property|name)=["\\']' + key + '["\\'][^>]+content=["\\']([^"\\']*)["\\'][^>]*>', "i"); const m = html.match(re); return m ? m[1] : ""; };
+        const meta = key => { const re = new RegExp('<meta[^>]+(?:property|name)="'+key+'"[^>]+content="([^"]*)"[^>]*>', "i"); const m = html.match(re); return m ? m[1] : ""; };
         const title = meta("og:title") || ((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || "");
         const description = meta("og:description") || meta("description");
         const text = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 16000);
