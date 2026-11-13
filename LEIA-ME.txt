@@ -1,47 +1,63 @@
-MELOSHOP — INSTALAÇÃO E CONFIGURAÇÃO
+MELOSHOP MARKETING — INSTALAÇÃO E CONFIGURAÇÃO
 
-O que já está no projeto
+O que já existe
 - Interface responsiva para computador e celular.
-- Campo para colar o link do produto.
-- API /api/analyze para ler metadados públicos e gerar o pacote de marketing.
-- Integrações com OpenAI, Google Gemini e Anthropic (Claude).
-- Fallback: se um provedor falhar, tenta o próximo que estiver configurado.
-- Painel que mostra quais provedores estão configurados.
-- PWA básico para instalação como aplicativo.
+- Campo para links da Shopee e do Mercado Livre.
+- API /api/analyze com resposta em etapas.
+- Leitura de metadados Open Graph e Product JSON-LD.
+- Validação HTTPS e lista de domínios permitidos.
+- Redirecionamentos curtos limitados aos domínios permitidos.
+- Geração de título, legenda, hashtags, roteiro e orientação visual.
+- Vercel AI Gateway como integração principal, com Kimi K3 por padrão.
+- Fallbacks opcionais para OpenAI, Gemini e Claude.
+- Painel que mostra apenas se uma integração está configurada; nunca revela chaves.
+- PWA básico para instalação.
 
-IMPORTANTE
-O GitHub Pages hospeda apenas arquivos estáticos e não executa /api. Para usar a análise por IA, publique este mesmo repositório na Vercel (ou em outro host que execute funções Node.js). Não é necessário criar outro repositório.
+REQUISITOS
+- Node.js 22 ou superior.
+- npm (o repositório não tinha package.json nem arquivo de lock; npm passa a ser o gerenciador padrão).
+- Conta/chave do Vercel AI Gateway para geração real por IA.
+
+DESENVOLVIMENTO LOCAL
+1. Instale Node.js 22 ou superior.
+2. Na pasta do projeto, execute: npm install
+3. Copie .env.example para .env.local.
+4. Abra .env.local no seu computador e preencha AI_GATEWAY_API_KEY com sua chave.
+5. Opcionalmente, defina AI_GATEWAY_MODEL=moonshotai/kimi-k3.
+6. Execute os testes: npm test
+
+SEGURANÇA DAS CHAVES
+- .env.local é ignorado pelo Git.
+- Nunca coloque chaves em index.html, arquivos públicos, commits ou mensagens de chat.
+- Configure a chave localmente em .env.local.
+- Na Vercel, cadastre AI_GATEWAY_API_KEY em Project Settings > Environment Variables e faça novo deploy.
+- O MeloShop verifica apenas se a chave existe; não mostra nem registra seu valor.
+- Chamadas ao modelo podem gerar custos e estão sujeitas aos limites e preços do Gateway.
 
 PUBLICAR NA VERCEL
-1. Entre na Vercel e importe o repositório gustavocontagem97-jpg/MeloShop.
-2. Use as configurações padrão para projeto JavaScript/Node.
-3. Faça o deploy.
-4. Em Project Settings > Environment Variables, adicione pelo menos uma chave:
-   OPENAI_API_KEY
-   GEMINI_API_KEY
-   ANTHROPIC_API_KEY
-5. Opcionalmente, configure o modelo:
-   OPENAI_MODEL (padrão: gpt-5-mini)
-   GEMINI_MODEL (padrão: gemini-2.5-flash)
-   ANTHROPIC_MODEL (o identificador de modelo disponível na sua conta)
-6. Faça um novo deploy depois de salvar as variáveis.
+1. Importe ou mantenha o repositório gustavocontagem97-jpg/MeloShop.
+2. Use Node.js 22 ou superior.
+3. Em Environment Variables, adicione AI_GATEWAY_API_KEY.
+4. Opcionalmente, configure AI_GATEWAY_MODEL. O padrão é moonshotai/kimi-k3.
+5. Faça um novo deploy após salvar as variáveis.
 
-SEGURANÇA
-- Nunca coloque chaves de API no index.html, no navegador ou em commits.
-- Cadastre as chaves somente nas variáveis de ambiente do servidor.
-- A tela de integrações mostra apenas se a chave existe; ela nunca revela o segredo.
-- As chamadas às APIs podem gerar custos e estão sujeitas a limites dos provedores.
+LEITURA DE PRODUTOS
+- O leitor aceita apenas HTTPS nos domínios oficiais previstos para Shopee e Mercado Livre.
+- Links curtos são seguidos com limite de redirecionamentos; cada destino é validado novamente.
+- A leitura tenta metadados Open Graph e JSON-LD Product.
+- Shopee e Mercado Livre podem limitar ou bloquear leitura automatizada; o MeloShop não promete extração completa.
+- Se a loja bloquear a página, preencha a observação com nome, preço e características que você confirmou.
+- O conteúdo da página é tratado como dado externo não confiável, não como instrução para a IA.
+- Revise preço, estoque, frete, medidas e características na página original antes de publicar.
+- Hashtags são sugestões, não tendências verificadas.
 
-LIMITAÇÕES
-- A API aceita links HTTPS de Shopee, Mercado Livre, Amazon Brasil e AliExpress.
-- Algumas lojas bloqueiam leitura automatizada. Nesses casos, a identificação pode ficar incompleta.
-- Hashtags sugeridas pela IA não significam que sejam tendências verificadas; confira antes de publicar.
-- Revise preço, estoque, frete, medidas e características na página original.
-- A conexão do provedor é feita pelas variáveis de ambiente da hospedagem; a interface não armazena nem solicita chaves secretas.
-
-ARQUIVOS
-- index.html: interface
-- api/analyze.js: análise e geração por IA
-- api/providers.js: status das integrações
-- vercel.json: configuração das funções
-- manifest.webmanifest e sw.js: instalação/cache do PWA
+ARQUIVOS PRINCIPAIS
+- index.html: interface responsiva.
+- api/analyze.js: fluxo de análise e chamada ao AI SDK.
+- api/providers.js: status das integrações.
+- lib/product-research.js: validação segura, redirecionamentos e metadados.
+- test/product-research.test.js: testes do leitor de links.
+- package.json: projeto ESM e dependência ai.
+- .gitignore: protege .env.local e arquivos locais.
+- .env.example: modelo sem segredos.
+- manifest.webmanifest e sw.js: instalação/cache do PWA.
